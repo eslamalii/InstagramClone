@@ -15,7 +15,7 @@
             android:adjustViewBounds="true"
             android:cropToPadding="false"
             android:scaleType="centerCrop"
-            android:src="@mipmap/baseline_add_photo_alternate_black_18dp" />
+            android:src="@mipmap/baseline_add_photo_alternate_black_48dp" />
 
         <TextView
             android:id="@+id/postTitleList"

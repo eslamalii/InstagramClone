@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/action_add"
-        android:icon="@mipmap/ic_launcher"
-        android:title="Add Post"
+        android:icon="@mipmap/baseline_add_white_24"
+        android:title="@string/add_post"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_signout"
-        android:title="Signout"
+        android:title="@string/signout"
         app:showAsAction="never" />
 
 </menu>
