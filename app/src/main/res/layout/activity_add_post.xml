@@ -9,7 +9,7 @@
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="275dp"
         android:layout_margin="25dp"
         android:adjustViewBounds="true"
         android:cropToPadding="true"
@@ -26,6 +26,7 @@
         android:id="@+id/titlePost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
         android:background="@drawable/input_outline"
         android:hint="@string/post_title"
         android:padding="15dp"
@@ -40,6 +41,7 @@
         android:id="@+id/descPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
         android:background="@drawable/input_outline"
         android:hint="@string/post_description"
         android:padding="15dp"
@@ -51,9 +53,10 @@
         app:layout_constraintVertical_bias="0.072" />
 
     <Button
-        android:id="@+id/postTitle"
+        android:id="@+id/submitPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/submit_post"
         android:textColor="@color/white"
