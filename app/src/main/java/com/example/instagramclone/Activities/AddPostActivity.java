@@ -89,7 +89,7 @@ public class AddPostActivity extends AppCompatActivity {
         String descVal = mPostDes.getText().toString().trim();
 
         if (!TextUtils.isEmpty(titleVal) && !TextUtils.isEmpty(descVal)) {
-            Blog blog = new Blog("Title", "Describtion", "imageurl", "timestamp", "userid");
+            Blog blog = new Blog("Title", "Description", "imageurl", "timestamp", "userId");
 
             mDatabase.setValue(blog).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
