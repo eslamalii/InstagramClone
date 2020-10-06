@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instagramclone.Model.Blog;
 import com.example.instagramclone.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 import java.util.List;
@@ -46,7 +47,9 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         holder.timestamp.setText(blog.getTimestamp());
 
         imageUrl = blog.getImage();
-        //TODO: Use Picasso
+        Picasso.get()
+                .load(imageUrl)
+                .into(holder.image);
     }
 
     @Override

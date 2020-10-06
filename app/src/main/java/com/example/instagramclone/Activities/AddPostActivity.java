@@ -115,6 +115,9 @@ public class AddPostActivity extends AppCompatActivity {
                     reference.setValue(dataToString);
 
                     mProgressDialog.dismiss();
+
+                    startActivity(new Intent(AddPostActivity.this, PostListActivity.class));
+                    finish();
                 }
             });
         }
