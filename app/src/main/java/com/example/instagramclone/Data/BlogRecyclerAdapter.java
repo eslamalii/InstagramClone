@@ -42,9 +42,9 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         holder.desc.setText(blog.getDesc());
 
         java.text.DateFormat dateFormat = java.text.DateFormat.getDateInstance();
-        String formattedDate = dateFormat.format(new Date(Long.valueOf(blog.getTimestamp())).getTime());
+        String formattedDate = dateFormat.format(new Date(Long.parseLong(blog.getTimestamp())).getTime());
 
-        holder.timestamp.setText(blog.getTimestamp());
+        holder.timestamp.setText(formattedDate);
 
         imageUrl = blog.getImage();
         Picasso.get()

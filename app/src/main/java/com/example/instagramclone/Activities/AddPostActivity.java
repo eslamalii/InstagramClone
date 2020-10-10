@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class AddPostActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
+        mStorageRef = FirebaseStorage.getInstance().getReference().child("MBlog_images");
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("MBlog");
 
@@ -84,7 +85,7 @@ public class AddPostActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == GALLERY_CODE && resultCode == RESULT_OK) {
             mImageUri = data.getData();
-            mPostImage.setImageURI(mImageUri);
+            Picasso.get().load(mImageUri).into(mPostImage);
         }
     }
 
@@ -97,20 +98,33 @@ public class AddPostActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(titleVal) && !TextUtils.isEmpty(descVal) && mImageUri != null) {
 
-            StorageReference ref = mStorageRef.child("MBlog_images").child(mImageUri.getLastPathSegment());
+            StorageReference ref = mStorageRef.child(String.valueOf(System.currentTimeMillis()));
             ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
 
-                    DatabaseReference reference = mDatabase.push();
+
+
+                    final DatabaseReference reference = mDatabase.push();
 
                     Map<String, String> dataToString = new HashMap<>();
                     dataToString.put("title", titleVal);
                     dataToString.put("desc", descVal);
-                    dataToString.put("image", downloadUrl.toString());
+//                    dataToString.put("image", downloadUrl.toString());
                     dataToString.put("timestamp", String.valueOf(java.lang.System.currentTimeMillis()));
                     dataToString.put("userid", mUser.getUid());
+
+                    downloadUrl.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String imageUri = uri.toString();
+
+                            reference.child("image").setValue(imageUri);
+
+                        }
+                    });
+
 
                     reference.setValue(dataToString);
 
