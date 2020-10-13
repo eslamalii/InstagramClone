@@ -8,10 +8,11 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="364dp"
-        android:layout_height="245dp"
+        android:layout_width="100dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:layout_height="100dp"
         android:layout_margin="25dp"
-        android:scaleType="center"
+        android:scaleType="centerCrop"
         android:src="@mipmap/baseline_add_photo_alternate_black_48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
