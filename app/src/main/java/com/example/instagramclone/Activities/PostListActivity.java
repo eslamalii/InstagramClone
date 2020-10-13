@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class PostListActivity extends AppCompatActivity {
@@ -89,6 +91,9 @@ public class PostListActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Blog blog = snapshot.getValue(Blog.class);
                 blogList.add(blog);
+
+                Collections.reverse(blogList);
+
                 adapter = new BlogRecyclerAdapter(PostListActivity.this, blogList);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
